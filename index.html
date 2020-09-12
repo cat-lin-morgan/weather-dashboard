@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="text-white bg-dark">
+        <h1>Weather Dashboard</h1>
+    </header>
+    
+    <main>
+        <div class="container d-flex flex-row">
+            <!-- start of row -->
+            <div class="row">
+                <!-- search bar is here  -->
+                <div class="col-4">
+                    <div class="input-group">
+                        <input id="cityName" type="text" class="form-control" placeholder="Search by city name!">
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="button">
+                            <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- current weather  -->
+                <div class="col-8 w-50">
+                    <h2>Current Weather</h2>
+                </div>
+                <!-- random cities  -->
+                <div class="col-4">Random Cities</div>
+                <!-- breaking div  -->
+                <div class="w-100"></div>
+                <!-- here we have the weather cards  -->
+
+                <div class="row justify-content-end">
+                    <div class="col-12">
+                         <h3>5-Day Forecast</h3>
+                    </div>
+                    <!-- card 1  -->
+                    <div class="col card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Header</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Primary card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                    <!-- card 2  -->
+                    <div class="col card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Header</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Primary card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                    <!-- card 3  -->
+                    <div class="col card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Header</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Primary card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                    <!-- card 4  -->
+                    <div class="col card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Header</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Primary card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                    <!-- card 5  -->
+                    <div class="col card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Header</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Primary card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- end of main row  -->
+            </div>
+        </div>
+    </main>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
