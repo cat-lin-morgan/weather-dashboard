@@ -46,7 +46,7 @@ var getUvIndex = function (lat, lon) {
 
 //displays current weather
 var displayCurrentWeather = function (data) {
-    console.log("I", data);
+    // console.log("I", data);
     var cityName = data.name;
     var date = moment().format('L');
     var iconUrl = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
@@ -79,7 +79,6 @@ var displayCurrentWeather = function (data) {
 }
 
 var displayUvIndex = function (sun) {
-    console.log(sun);
     var uvIndex = sun.value;
     //add colors for each uv thing
     var uvColor 
@@ -109,16 +108,46 @@ var displayUvIndex = function (sun) {
     //apppend element
     indexEl.append(badgeEl);
     currentContainerEl.append(indexEl);
-
-}
+};
 
 
 var displayForecastWeather = function (data) {
     // console.log("am", data);
-    var date = moment().format('L');
-    var emoji 
-    // var temperature = data.main.temp;
-    // var humidity = data.main.humidity;
+    //filters for the forecast at new for a fake high temp
+    var cards = data.list.filter(function(card) {
+        if (card["dt_txt"].endsWith("12:00:00")) {
+            return true;
+        }
+        return false;
+    });
+    //clear previous search
+    $("#forecast-row").html("");
+    $.each(cards, displayCard);
+};
+
+//loops thru to display one card at a time
+var displayCard = function (i, day) {
+    var date = moment(day["dt_txt"]).format('L');
+    var iconUrl = "http://openweathermap.org/img/w/" + day.weather[0].icon + ".png";
+    var temperature = day.main.temp;
+    var humidity = day.main.humidity;
+
+    //making elements
+    var col = $("<div>").addClass("col");
+    var card = $("<div>").addClass("card text-white bg-primary mb-3");
+    var cardBody = $("<div>").addClass("card-body");
+    var cardTitle = $("<h5>").addClass("card-title").text(date);
+    var cardIcon = $("<img>").attr("src", iconUrl);
+    var cardTemp = $("<p>").addClass("card-text").text("Temperature: " + temperature + " \u00B0F");
+    var cardHumid = $("<p>").addClass("card-text").text("Humidity: " + humidity + "%");
+    //append them!
+    cardBody.append(cardTitle);
+    cardBody.append(cardIcon);
+    cardBody.append(cardTemp);
+    cardBody.append(cardHumid);
+    card.append(cardBody);
+    col.append(card);
+    $("#forecast-row").append(col);
 }
 
 
@@ -138,17 +167,17 @@ var searchInput = function (event) {
 
 //master event that triggers everything else
 var handleSearch = function (cityName) {
-//get current weather
+    //get current weather
     getCurrentWeather(cityName);
-//get forecast
+    //get forecast
     getFiveCast(cityName);
-//add current city into local storage
-//display current city in history sidebar
-}
+    //add current city into local storage
+    //display current city in history sidebar
+};
 
 var saveCities = function () {
 
-}
+};
 
 //load cities from local storage
 var loadCities = function () {
@@ -156,9 +185,7 @@ var loadCities = function () {
   
     // if nothing in localStorage, create a new object to track all task status arrays
     if (!localStorageCities) {
-      localStorageCities =  [
-
-      ]
+      localStorageCities =  [];
     }
     return localStorageCities;
 };
