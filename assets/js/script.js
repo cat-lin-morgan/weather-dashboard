@@ -30,6 +30,20 @@ var getFiveCast = function (cityName) {
         });
 };
 
+//get UV index //gets lon and lat from current weather api
+var getUvIndex = function (lat, lon) {
+    var openWeatherApi = `http://api.openweathermap.org/data/2.5/uvi?appid=552d4c7d171826087d706ba7bce893dc&lat=${lat}&lon=${lon}`;
+    //making a request to get the api's info
+    fetch(openWeatherApi)
+        .then(function(response) {
+            if (response.ok) {
+                response.json().then(function(sun) {
+                    displayUvIndex(sun);
+                });
+            }
+        });
+}
+
 //displays current weather
 var displayCurrentWeather = function (data) {
     console.log("I", data);
@@ -39,7 +53,8 @@ var displayCurrentWeather = function (data) {
     var temperature = data.main.temp;
     var humidity = data.main.humidity;
     var windSpeed = data.wind.speed;
-    var uvIndex
+    var uvLat = data.coord.lat;
+    var uvLon = data.coord.lon;
 
     //making elements for the values above
     var currentContainerEl = $("#current-weather");
@@ -59,20 +74,47 @@ var displayCurrentWeather = function (data) {
     currentContainerEl.append(humidityEl);
     currentContainerEl.append(windSpeedEl);
 
+    //fetches and displays
+    getUvIndex(uvLat, uvLon);
 }
 
-var displayUvIndex = function () {
-    //gets lon and lat from current weather api
-    //fetches the api url
-    //puts long and lat into url
-    //display it
-    //add colors for respond 
-    // of either getCurrentWeather, yellow, orange, or red 
+var displayUvIndex = function (sun) {
+    console.log(sun);
+    var uvIndex = sun.value;
+    //add colors for each uv thing
+    var uvColor 
+    switch (true) {
+        case (uvIndex <= 2) :
+            uvColor = "badge-primary"
+            break;
+        case (uvIndex <= 5) :
+            uvColor = "badge-success"
+            break;
+        case (uvIndex <= 7) : 
+            uvColor = "badge-warning"
+            break;
+        case (uvIndex <= 10) :
+            uvColor = "badge-danger"
+            break;
+        case (uvIndex > 10) :
+            uvColor = "badge-dark"
+            break;
+    }
+    //make elements
+    var indexEl = $("<p>").text("UV Index: ");
+    var badgeEl = $("<span>")
+        .text(uvIndex)
+        .addClass(`badge badge-pill ${uvColor}`);
+    var currentContainerEl = $("#current-weather");
+    //apppend element
+    indexEl.append(badgeEl);
+    currentContainerEl.append(indexEl);
+
 }
 
 
 var displayForecastWeather = function (data) {
-    console.log("am", data);
+    // console.log("am", data);
     var date = moment().format('L');
     var emoji 
     // var temperature = data.main.temp;
@@ -82,9 +124,16 @@ var displayForecastWeather = function (data) {
 
 
 //get value from input and pass it to getCityWeather
-var weatherInput = function () {
+var searchButton = function () {
     var cityName = htmlInput.value;
     handleSearch(cityName);
+};
+
+var searchInput = function (event) {
+    var cityName = event.target.value;
+    if (event.key === "Enter") {
+        handleSearch(cityName);
+    }
 }
 
 //master event that triggers everything else
@@ -118,4 +167,5 @@ var startApplication = function () {
     //load history from storage and display it
 }
 
-citySearch.addEventListener("click", weatherInput);
+citySearch.addEventListener("click", searchButton);
+htmlInput.addEventListener("keydown", searchInput);
