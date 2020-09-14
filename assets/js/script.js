@@ -1,5 +1,6 @@
 var htmlInput = document.querySelector("#cityName"); //input
 var citySearch = document.querySelector("#citySearch"); //button
+var cityHistory
 
 //get user's current weather from api
 var getCurrentWeather = function (cityName) {
@@ -172,11 +173,22 @@ var handleSearch = function (cityName) {
     //get forecast
     getFiveCast(cityName);
     //add current city into local storage
+    saveCities(cityName);
     //display current city in history sidebar
+    displayCityHistory();
 };
 
-var saveCities = function () {
-
+var saveCities = function (cityName) {
+    // get city from local storage
+    var localStorageCities = loadCities();
+    var cityExists = localStorageCities.includes(cityName)
+    if (cityExists === false || localStorageCities.length === 0) {
+        localStorageCities.push(cityName);
+    }
+    // save local storage
+    localStorage.setItem("city", JSON.stringify(localStorageCities));
+    //global variable to local storage
+    cityHistory = localStorageCities;
 };
 
 //load cities from local storage
@@ -190,9 +202,29 @@ var loadCities = function () {
     return localStorageCities;
 };
 
+var displayCityHistory = function () {
+    $("#history").html("");
+    $.each(cityHistory, function(i, city) {
+        var cityContainerEl = $("<button>")
+            .addClass("list-group-item list-group-item-action")
+            .attr("type", "button")
+            .text(city)
+            .on("click", function(){
+                handleSearch(city);
+            });
+        $("#history").append(cityContainerEl);
+    
+    });
+} 
+
 var startApplication = function () {
     //load history from storage and display it
+    cityHistory = loadCities();
+    displayCityHistory();
 }
 
+//event listeners
 citySearch.addEventListener("click", searchButton);
 htmlInput.addEventListener("keydown", searchInput);
+
+startApplication();
