@@ -47,7 +47,6 @@ var getUvIndex = function (lat, lon) {
 
 //displays current weather
 var displayCurrentWeather = function (data) {
-    // console.log("I", data);
     var cityName = data.name;
     var date = moment().format('L');
     var iconUrl = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
@@ -114,7 +113,6 @@ var displayUvIndex = function (sun) {
 
 
 var displayForecastWeather = function (data) {
-    // console.log("am", data);
     //filters for the forecast at new for a fake high temp
     var cards = data.list.filter(function(card) {
         if (card["dt_txt"].endsWith("12:00:00")) {
