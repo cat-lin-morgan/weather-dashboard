@@ -64,7 +64,8 @@ var displayCurrentWeather = function (data) {
     var temperatureEl = $("<p>").text("Temperature: " + temperature + " \u00B0F");
     var humidityEl = $("<p>").text("Humidity: " + humidity + "%");
     var windSpeedEl = $("<p>").text("Wind Speed: " + windSpeed + " MPH");
-
+    //adds style once there's content in it
+    currentContainerEl.addClass("border border-warning rounded-sm p-3");
     //clear previous search
     currentContainerEl.html("");
 
