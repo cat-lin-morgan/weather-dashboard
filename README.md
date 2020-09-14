@@ -1,5 +1,5 @@
 # Weather Dashboard
-## Forecast's and Current Weather for your most frequently visited cities!
+## Forecasts and Current Weather for your most frequently visited cities!
 
 Here is a direct and working URL to weather dashboard!
 
@@ -20,9 +20,9 @@ When you click on the city history, you get the city's current and future weathe
 
 Below is a gif of the __weather dashboard__ in action and below that is the screenshot.
 
-<img src="assets/images/" alt="gif of the weather dashboard"/>
+<img src="assets/images/weatherdashvideo.gif" alt="gif of the weather dashboard"/>
 
-<img src="./assets/images/" alt="screen shot of weather dashboard"/>
+<img src="./assets/images/weatherdashboard.png" alt="screen shot of weather dashboard"/>
 
 ---
 
