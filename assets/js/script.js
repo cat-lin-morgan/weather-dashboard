@@ -134,7 +134,7 @@ var displayCard = function (i, day) {
     var humidity = day.main.humidity;
 
     //making elements
-    var col = $("<div>").addClass("col");
+    var col = $("<div>").addClass("col pr-1");
     var card = $("<div>").addClass("card text-white bg-primary mb-3");
     var cardBody = $("<div>").addClass("card-body");
     var cardTitle = $("<h5>").addClass("card-title").text(date);
