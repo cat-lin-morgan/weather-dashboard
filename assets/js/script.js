@@ -33,7 +33,7 @@ var getFiveCast = function (cityName) {
 
 //get UV index //gets lon and lat from current weather api
 var getUvIndex = function (lat, lon) {
-    var openWeatherApi = `http://api.openweathermap.org/data/2.5/uvi?appid=552d4c7d171826087d706ba7bce893dc&lat=${lat}&lon=${lon}`;
+    var openWeatherApi = `https://api.openweathermap.org/data/2.5/uvi?appid=552d4c7d171826087d706ba7bce893dc&lat=${lat}&lon=${lon}`;
     //making a request to get the api's info
     fetch(openWeatherApi)
         .then(function(response) {
