@@ -134,12 +134,12 @@ var displayCard = function (i, day) {
     var humidity = day.main.humidity;
 
     //making elements
-    var col = $("<div>").addClass("col pr-1");
+    var col = $("<div>").addClass("col");
     var card = $("<div>").addClass("card text-white bg-primary mb-3");
     var cardBody = $("<div>").addClass("card-body");
     var cardTitle = $("<h5>").addClass("card-title").text(date);
     var cardIcon = $("<img>").attr("src", iconUrl);
-    var cardTemp = $("<p>").addClass("card-text").text("Temperature: " + temperature + " \u00B0F");
+    var cardTemp = $("<p>").addClass("card-text").text("Temp: " + temperature + " \u00B0F");
     var cardHumid = $("<p>").addClass("card-text").text("Humidity: " + humidity + "%");
     //append them!
     cardBody.append(cardTitle);
